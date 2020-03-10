@@ -99,6 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\DomainObject1.cs" />
+    <Compile Include="BusinessObjects\MyClass.cs" />
+    <Compile Include="BusinessObjects\FunctionEvaluatedInMemory.cs" />
+    <Compile Include="BusinessObjects\MyGetMonthFunction.cs" />
     <Compile Include="Controllers\ViewController1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -118,7 +121,7 @@
     <Compile Include="Module.Designer.cs">
       <DependentUpon>Module.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyValueManager.cs" />
+    <Compile Include="MainValueManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

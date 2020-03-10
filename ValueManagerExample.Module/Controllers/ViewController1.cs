@@ -14,6 +14,7 @@ using DevExpress.ExpressApp.Templates;
 using DevExpress.ExpressApp.Utils;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
+using ValueManagerExample.Module.BusinessObjects;
 
 namespace ValueManagerExample.Module.Controllers
 {
@@ -43,8 +44,11 @@ namespace ValueManagerExample.Module.Controllers
 
         private void simpleAction1_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
-            Debug.WriteLine(MyValueManager.MyDateTimeProperty);
-            Debug.WriteLine(MyValueManager.MyStringProperty);
+            Debug.WriteLine(MainValueManager.MyDateTimeProperty);
+            Debug.WriteLine(MainValueManager.CurrentUser);
+
+            MyClass.Register();
+            var Value= CriteriaOperator.Parse("MyClass()==1");
         }
     }
 }

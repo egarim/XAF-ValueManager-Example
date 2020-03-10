@@ -14,6 +14,11 @@ using DevExpress.Persistent.Validation;
 
 namespace ValueManagerExample.Module.BusinessObjects
 {
+    using System;
+    using DevExpress.Data.Filtering;
+    using DevExpress.Xpo.DB;
+
+
     [DefaultClassOptions]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
@@ -32,6 +37,7 @@ namespace ValueManagerExample.Module.BusinessObjects
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
+        string _owner;
         DateTime _date;
         string _name;
 
@@ -41,7 +47,7 @@ namespace ValueManagerExample.Module.BusinessObjects
             get => _name;
             set => SetPropertyValue(nameof(Name), ref _name, value);
         }
-        
+
         public DateTime Date
         {
             get => _date;
@@ -50,8 +56,17 @@ namespace ValueManagerExample.Module.BusinessObjects
         protected override void OnSaving()
         {
             base.OnSaving();
-            MyValueManager.MyStringProperty = this.Name;
-            MyValueManager.MyDateTimeProperty = this.Date;
+            //MainValueManager.CurrentUser = this.Name;
+            MainValueManager.MyDateTimeProperty = this.Date;
+            Owner = MainValueManager.CurrentUser;
         }
+        
+        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        public string Owner
+        {
+            get => _owner;
+            set => SetPropertyValue(nameof(Owner), ref _owner, value);
+        }
+
     }
 }

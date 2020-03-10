@@ -8,6 +8,7 @@ using DevExpress.ExpressApp.Win;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.XtraEditors;
+using ValueManagerExample.Module.BusinessObjects;
 
 namespace ValueManagerExample.Win {
     static class Program {
@@ -16,6 +17,9 @@ namespace ValueManagerExample.Win {
         /// </summary>
         [STAThread]
         static void Main() {
+
+            FunctionEvaluatedInMemory.Register();
+
 #if EASYTEST
             DevExpress.ExpressApp.Win.EasyTest.EasyTestRemotingRegistration.Register();
 #endif

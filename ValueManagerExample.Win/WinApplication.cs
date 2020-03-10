@@ -8,6 +8,7 @@ using DevExpress.ExpressApp.Win.Utils;
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Security.ClientServer;
+using ValueManagerExample.Module;
 
 namespace ValueManagerExample.Win {
     // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Win.WinApplication._members
@@ -30,6 +31,7 @@ namespace ValueManagerExample.Win {
             InitializeComponent();
 			InitializeDefaults();
         }
+        
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
             args.ObjectSpaceProviders.Add(new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, XPObjectSpaceProvider.GetDataStoreProvider(args.ConnectionString, args.Connection, true), false));
             args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
@@ -39,6 +41,11 @@ namespace ValueManagerExample.Win {
             if(userLanguageName != "en-US" && e.Languages.IndexOf(userLanguageName) == -1) {
                 e.Languages.Add(userLanguageName);
             }
+        }
+        protected override void OnLoggedOn(LogonEventArgs args)
+        {
+            base.OnLoggedOn(args);
+            MainValueManager.CurrentUser = SecuritySystem.CurrentUserName;
         }
         private void ValueManagerExampleWindowsFormsApplication_DatabaseVersionMismatch(object sender, DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs e) {
 #if EASYTEST

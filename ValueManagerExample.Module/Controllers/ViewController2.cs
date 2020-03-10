@@ -43,10 +43,10 @@ namespace ValueManagerExample.Module.Controllers
 
         private void simpleAction1_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
-            MyValueManager.MyStringProperty = "Hello from controller";
-            MyValueManager.MyDateTimeProperty = DateTime.Now;
-            Debug.WriteLine(MyValueManager.MyDateTimeProperty);
-            Debug.WriteLine(MyValueManager.MyStringProperty);
+            MainValueManager.CurrentUser = "Hello from controller";
+            MainValueManager.MyDateTimeProperty = DateTime.Now;
+            Debug.WriteLine(MainValueManager.MyDateTimeProperty);
+            Debug.WriteLine(MainValueManager.CurrentUser);
         }
     }
 }
